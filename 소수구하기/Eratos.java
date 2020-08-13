@@ -1,7 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class Cls_Eratos {
+class Eratos {
+
     public static void main(String[] args) {
         // 에라토스테네스이 체
         // 주어진 수의 범위내에 소수들을 찾아내는 알고리즘이다.
@@ -16,12 +17,12 @@ class Cls_Eratos {
         // 자기 자신을 제외한 7의 배수를 모두 지운다.
 
         // 위의 과정을 반복하면 구하는 구간의 모든 소수가 남는다.
-        int answer = Eratos(345);
+        int answer = eratos_show(345);
         System.out.println(answer);
 
     }
 
-    public static int Eratos(int input) {
+    public static int eratos_show(int input) {
 
         List<String> show = new ArrayList<String>();
 

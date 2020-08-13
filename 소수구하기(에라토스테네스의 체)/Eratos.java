@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class KaKao {
+class Cls_Eratos {
     public static void main(String[] args) {
         // 에라토스테네스이 체
         // 주어진 수의 범위내에 소수들을 찾아내는 알고리즘이다.

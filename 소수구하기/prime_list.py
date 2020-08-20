@@ -1,6 +1,10 @@
+import math
 # a~b범위 안에 소수들의 합을 구한다.
+
+
 def primesSum(a, b):
     return sum(filter(lambda x: all(x % i for i in range(2, int(math.sqrt(x)) + 1)), range(max(2, a), b + 1)))
+# int(math.sqrt(x)) --> = 같은 표현이다. == > int(x**0.5)
 # 에라토스테네스의 체 구현.
 
 

@@ -2,7 +2,7 @@ from itertools import permutations as pm
 
 
 def solution(numbers):
-    return max(list(''.join(map(str, i)) for i in list(pt(numbers, len(numbers)))))
+    return max(list(''.join(map(str, i)) for i in list(pm(numbers, len(numbers)))))
 
 
 number1 = [3, 30, 34, 5, 9, 2, 21]

@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/problem/2588
+# 수학
 a = input()
 b = input()
 

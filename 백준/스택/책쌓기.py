@@ -1,5 +1,6 @@
 from collections import deque
 # 백준 5431번
+# https://www.acmicpc.net/problem/5431
 a = int(input())
 count = 0
 for i in range(a):

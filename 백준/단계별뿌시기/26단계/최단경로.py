@@ -21,33 +21,5 @@ for s, e in matrix.items():
 
 # 첫째줄부터 v개 줄에 걸쳐, i번째줄에 i번 정점으로의 최단 경로값을 출력
 # # 시작점은 0 , 경로없는경우 INF출력
-# from heapq import heappush, heappop
-# inf = 100000000
-# sample =[
-# [5, 1, 1],
-# [1, 2, 2],
-# [1, 3, 3],
-# [2, 3, 4],
-# [2, 4, 5],
-# [3, 4, 6]]
-# v, e = 5, 6
-# k = 1
-# s = [[] for _ in range(v + 1)]
-# dp = [inf] * (v + 1)
-# heap = []
-# def dijkstra(start):
-#     dp[start] = 0
-#     heappush(heap, [0, start])
-#     while heap:
-#         w, n = heappop(heap)
-#         for n_n, wei in s[n]:
-#             n_w = wei + w
-#             if n_w < dp[n_n]:
-#                 dp[n_n] = n_w
-#                 heappush(heap, [n_w, n_n])
-# for i in range(e):
-#     u, v, w = map(int, sample[i])
-#     s[u].append([v, w])
-# dijkstra(k)
-# for i in dp[1:]:
-#     print(i if i != inf else "INF")
+https: // sungmin - joo.tistory.com / 33
+https: // pacific-ocean.tistory.com/281

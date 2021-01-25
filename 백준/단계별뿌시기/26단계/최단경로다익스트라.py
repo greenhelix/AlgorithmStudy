@@ -13,13 +13,19 @@ heap = []
 s = [[] for _ in range(v + 1)]
 dp = [inf] * (v + 1)
 
+print('dp= ', *dp, sep='\n')
+
 
 def dijkstra(start):
     dp[start] = 0
     heappush(heap, [0, start])
+
     while heap:
         w, n = heappop(heap)
+        print('w:', w, 'n:', n)
         for n_n, wei in s[n]:
+            print('heap=', heap)
+            print('n_n=', n_n, 'wei=', wei)
             n_w = wei + w
             if n_w < dp[n_n]:
                 dp[n_n] = n_w
@@ -28,7 +34,12 @@ def dijkstra(start):
 
 for i in range(e):
     u, v, w = map(int, sample[i])
-    s[u].append([v, w])
+    s[u].append([v, w])  # 노드별 루트에 따른 [도착점, 가중치]를 넣어준다.
+print('s= ', *s, sep='\n')
+
 dijkstra(k)
+print('s= ', *s, sep='\n')
+print('dp= ', *dp, sep='\n')
+
 for i in dp[1:]:
     print(i if i != inf else "INF")

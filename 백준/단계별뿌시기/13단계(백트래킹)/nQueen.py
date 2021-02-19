@@ -1,13 +1,13 @@
 # https://www.acmicpc.net/problem/9663
 # 대표적인 백트래킹 문제 이다.
 n = int(input())
-s = [0 for i in range(16)]
+row = [0 for i in range(16)]
 result = 0
 
 
 def isTrue(x):
     for i in range(1, x):
-        if s[x] == s[i] or abs(s[x] - s[i]) == x - i:
+        if row[x] == row[i] or abs(row[x] - row[i]) == x - i:
             return False
     return True
 
@@ -18,7 +18,7 @@ def dfs(cnt):
         result += 1
     else:
         for i in range(1, n + 1):
-            s[cnt] = i
+            row[cnt] = i
             if isTrue(cnt):
                 dfs(cnt + 1)
 

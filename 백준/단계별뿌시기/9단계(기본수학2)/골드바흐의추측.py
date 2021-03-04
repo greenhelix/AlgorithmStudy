@@ -19,7 +19,6 @@ def aristo(num):
 
 
 def find(p, num):
-    temp, case = [], []
     half = max([i for i in range(len(p)) if p[i] <= num/2])
     for i in range(half, -1, -1):
         for j in range(i, len(p)):
@@ -31,5 +30,5 @@ for i in range(n):
     a = int(input())
     m = aristo(a)
     print(" ".join(map(str, find(m, a))))
-    
+
 print(time.time() - start, 'time')

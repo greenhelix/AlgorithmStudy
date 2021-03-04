@@ -1,4 +1,6 @@
 # https://www.acmicpc.net/problem/9020
+import time
+start = time.time()
 n = int(input())
 
 
@@ -13,20 +15,21 @@ def aristo(num):
     for i in range(0, num):
         if i > 1 and checker[i] == True:
             re.append(i)
-
     return re
 
 
-for i in range(n):
-    print(i+1, 'case')
-    a = int(input())
-    print(a, 'input..')
-    middle = aristo(a)
-    print('middle:', middle)
-    temp = []
-    for i in range(len(middle)):
-        for j in range(len(middle)):
-            if middle[i] + middle[j] == a:
-                temp.append((middle[i], middle[j]))
+def find(p, num):
+    temp, case = [], []
+    half = max([i for i in range(len(p)) if p[i] <= num/2])
+    for i in range(half, -1, -1):
+        for j in range(i, len(p)):
+            if p[i] + p[j] == a:
+                return [p[i], p[j]]
 
-    print('show all case...', temp)
+
+for i in range(n):
+    a = int(input())
+    m = aristo(a)
+    print(" ".join(map(str, find(m, a))))
+    
+print(time.time() - start, 'time')

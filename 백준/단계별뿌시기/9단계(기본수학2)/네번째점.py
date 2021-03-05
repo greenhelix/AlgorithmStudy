@@ -9,5 +9,6 @@ for i in range(3):
     y.add(b)
     spot.append((a, b))
 all = list(product(list(x), list(y)))
+print(all)
 answer = list(set(all) - set(spot))
 print(answer[0][0], answer[0][1])

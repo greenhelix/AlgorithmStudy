@@ -7,24 +7,28 @@ cal = permutations(['*', '+', '-'])
 
 def solutions(exp):
     answer = 0
-    nums = split('[*+-]', exp)
-    cals = split('[\d]+', exp)[1:-1]
-    print(nums, cals)
+
     for i in cal:
         print(i)
-
+        nums = split('[*+-]', exp)
+        cals = split('[\d]+', exp)[1:-1]
         for j in i[:2]:
+            print(nums, cals)
+            print('j:', j)
             while j in cals:
                 idx = cals.index(j)
                 print('idx:', idx)
-                sample = nums[idx] + cals[idx] + nums[idx+1]
-                print(sample)
+
+                sample = nums[idx] + cals[idx] + nums[idx + 1]
+                print(sample, '=', eval(sample), '\n')
                 nums[idx] = str(eval(sample))
                 nums.pop(idx + 1)
                 cals.pop(idx)
         sample = ''
+        print('.....')
         for z in range(len(cals)):
             sample += nums[z] + cals[z]
+        print('계산', sample + nums[-1], '\n')
         sample = abs(eval(sample + nums[-1]))
 
         if sample > answer:
@@ -33,7 +37,7 @@ def solutions(exp):
     return answer
 
 
-exp = "100-200*300-500+20"
+exp = "50*6-3*2"
 print(solutions(exp))
 
 # def solution(exp):

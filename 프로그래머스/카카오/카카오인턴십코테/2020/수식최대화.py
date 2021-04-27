@@ -42,20 +42,15 @@ print(solutions(exp))
 
 # def solution(exp):
 #     answer = 0
-#     # 연산 우선순위 조합
+# 연산 우선순위 조합
 #     cal = [['*', '+', '-'], ['*', '-', '+'], ['+', '-', '*'],
 #            ['+', '*', '-'], ['-', '+', '*'], ['-', '*', '+']]
-#     # 숫자만 추출하여 리스트화
-
+# 숫자만 추출하여 리스트화
 #     nums = list(map(int, re.split('[-*+]', exp)))
 #     cals = re.split('[\d]+', exp)[1:-1]
 #     print(exp)
 #     print(nums, cals)
-
 #     for i in cal:
 #         print(i)
-
 #     return answer
-
-
 # solution(exp)

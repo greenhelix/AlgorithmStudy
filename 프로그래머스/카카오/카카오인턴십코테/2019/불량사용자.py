@@ -41,12 +41,12 @@ bann = ["fr*d*", "*rodo", "******", "******"]
 
 def check(kind, bann):
     for i in range(len(kind)):
-        if len(kind[i]) != len(bann[i]):
+        if len(kind[i]) != len(bann[i]):  # 아이디 조합의 길이가 다른면 바로 False
             return False
-        for j in range(len(kind[i])):
-            if bann[i][j] == '*':
+        for j in range(len(kind[i])):  # 각 아이디의 글자를 비교
+            if bann[i][j] == '*':  # *부분은 아무 거나 와도 상관없으므로 통과
                 continue
-            elif bann[i][j] != kind[i][j]:
+            elif bann[i][j] != kind[i][j]:  # 글자가 다른것이 있으면 바로 False
                 return False
     return True
 
@@ -54,14 +54,18 @@ def check(kind, bann):
 def solution(user, bann):
     answer = []
     kinds = list(pm(user, len(bann)))
+    # print(kinds)
     for i in kinds:
-        if check(i, bann):
-            i = set(i)
+        if check(i, bann):  # 아이디 조합별로 글자를 비교하여 통과된 경우 해당 아이디 조합을 사용
+
+            i = set(i)  # set으로 변경 - 중복 제거
 
             if i not in answer:
+                print('------')
                 print(i)
                 answer.append(i)
 
+    print('answer:', answer)
     return len(answer)
 
 

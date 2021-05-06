@@ -8,10 +8,16 @@ def solution(n, edge):
     print('dist:', dist)
     matrix = defaultdict(list)
     edge = sorted(edge)
+    # test = dict()
+    # for no1, no2 in edge:
+    #     test[no1].append(no2)
+    #     test[no2].append(no1)
+
     for no1, no2 in edge:
         matrix[no1].append(no2)
         matrix[no2].append(no1)
     print(matrix)
+    print(sorted(matrix.items()), type(sorted(matrix.items())))
     matrix = dict(sorted(matrix.items()))
     print(matrix)
 

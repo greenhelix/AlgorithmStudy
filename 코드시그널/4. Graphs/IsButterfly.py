@@ -20,6 +20,7 @@ def solution(roads):
     for k, v in matrix.items():  # 중간 점을 찾아낸다.
         cnt = 0
         if len(v) == 4:
+
             print(k, 'is middle')
             mid = False
 

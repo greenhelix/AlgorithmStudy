@@ -1,6 +1,9 @@
 from itertools import combinations as comb
+from collections import Counter as cnt
+
 sample1, course1 = ["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2, 3, 4]
-sample2, course2 = ["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"], [2, 3, 5]
+sample2, course2 = ["ABCDE", "ABCDE", "AB",
+                    "CD", "ADE", "XYZ", "XYZ", "ACD"], [2, 3, 5]
 sample3, course3 = ["XYZ", "XWY", "WXA"], [2, 3, 4]
 
 # 코스요리
@@ -41,8 +44,42 @@ def solution(orders, course):
     return sorted(list(map(''.join, answer)))
 
 
-print(solution(sample1, course1))
+def solution2(orders, course):
+    answer = []
+
+    for k in course:
+        kind = cnt()
+        for order in orders:
+            if len(order) >= k:
+                temp = [''.join(sorted(c)) for c in comb(order, k)]
+                menu = cnt(temp)
+                kind += menu
+                if kind == cnt():
+                    print('here1')
+                    break
+        if kind == cnt():
+            print('here2')
+            break
+        print(kind)
+
+        m = max(kind.values())
+
+        for i, v in kind.items():
+            if m == v and m > 1:
+                answer.append(i)
+
+    print('**********************')
+
+    return sorted(answer)
+
+
+# print(solution(sample1, course1))
+# print('========================')
+# print(solution(sample2, course2))
+# print('========================')
+# print(solution(sample3, course3))
+print(solution2(sample1, course1))
 print('========================')
-print(solution(sample2, course2))
+print(solution2(sample2, course2))
 print('========================')
-print(solution(sample3, course3))
+print(solution2(sample3, course3))

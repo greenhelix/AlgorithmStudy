@@ -1,5 +1,5 @@
 import heapq
-
+# from collections import deque
 n, s, a, b = 6, 4, 6, 2
 fares = [[4, 1, 10], [3, 5, 24], [5, 6, 2], [3, 1, 41], [
     5, 1, 24], [4, 6, 50], [2, 4, 66], [2, 3, 22], [1, 6, 25]]
@@ -24,6 +24,7 @@ def dijkstra(start, end):
     heap = [[0, start]]
 
     while heap:
+
         cost, node = heapq.heappop(heap)
         if temp[node] < cost:
             continue

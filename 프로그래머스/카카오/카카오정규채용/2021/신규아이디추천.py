@@ -14,6 +14,8 @@ def startLastCheck(newId):
         newId = ''
     return newId
 
+# find, rfind()
+
 
 def solution(id):
 

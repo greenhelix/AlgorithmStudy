@@ -70,6 +70,7 @@ def solution(n, fares):
     # 반복문을 통해 아무도 도달하지 않은 단계는
     for c in range(1, n+1):
         if c not in answer:
+            print(f'{c}단계가 없다. 추가한다.')
             answer.append(c)
 
     return answer
@@ -79,7 +80,7 @@ n = 5
 n1 = 4
 n2 = 5
 n3 = 5
-fare = [2, 1, 2, 6, 2, 4, 3, 3]
+fare = [2, 1, 2, 4, 2, 4, 3, 3]
 fare1 = [4, 4, 4, 4, 4]
 fare2 = [1, 2, 3, 4, 2, 2, 3, 4]
 fare3 = [1, 2, 3, 1, 2, 1, 2, 1]

@@ -76,6 +76,45 @@ def solution(n, fares):
     return answer
 
 
+def solution2(N, stages):
+    stages.sort()  # 기본 각 유저들의 위치를 정렬
+    p = len(stages)  # 유저의 총 명수를 p로 선언
+    answer = []
+    for i in range(1, N+1):  # 간 단계별로 반복문
+        t = stages.count(i)  # 각 스테이지별 카운트를 t에 담는다.
+
+        if t == 0:  # 아무도 도달하지 못한 경우의 스테이지 경우
+            answer.append((i, 0))  # 답안에 해당 스테이지, 0실패율로 입력
+        else:
+            answer.append((i, t/p))  # 그 외의 경우는 해당 스테이지의 인원수/현재유저수로 실패율을 계산한다.
+        p = p - t  # 실패율 계산이 진행됐으므로, 유저수를 줄여준다.
+    answer.sort(key=lambda x: (-x[1], x[0]))  # 정렬을 통해서 원하는 형식으로 정렬한다.
+    return [x for x, y in answer]
+
+
+def solution3(n, stages):
+    stages.sort()
+    user_num = len(stages)
+    print(stages, user_num)
+
+    answer = []
+
+    for i in range(1, n + 1):
+        now_user = stages.count(i)
+        print(i, '::', now_user)
+        if now_user == 0:
+            answer.append((i, 0))
+        else:
+            answer.append((i, now_user / user_num))
+
+        user_num -= now_user
+
+    print(answer)
+    answer.sort(key=lambda x: (-x[1], x[0]))
+    print(answer)
+    return [x for x, y in answer]
+
+
 n = 5
 n1 = 4
 n2 = 5
@@ -84,10 +123,14 @@ fare = [2, 1, 2, 4, 2, 4, 3, 3]
 fare1 = [4, 4, 4, 4, 4]
 fare2 = [1, 2, 3, 4, 2, 2, 3, 4]
 fare3 = [1, 2, 3, 1, 2, 1, 2, 1]
-print(solution(n, fare))
+# print(solution(n, fare))
+# print("============")
+# print(solution(n1, fare1))
+# print("============")
+print(solution3(n, fare))
 print("============")
-print(solution(n1, fare1))
-print("============")
-print(solution(n2, fare2))
-print("============")
-print(solution(n3, fare3))
+print(solution3(n1, fare1))
+# print("============")
+# print(solution(n2, fare2))
+# print("============")
+# print(solution(n3, fare3))

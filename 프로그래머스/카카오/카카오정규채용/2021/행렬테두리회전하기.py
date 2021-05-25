@@ -26,68 +26,94 @@ def solution(rows, columns, queries):
     print()
 
     for x1, y1, x2, y2 in queries:
-        m = 100001
-        temp = matrix[x1 - 1][y2 - 1]
-        print(temp)
-        # 윗면
-        m = min(min(matrix[x1 - 1][y1 - 1: y2 - 1]), m)
-        matrix[x1 - 1][y1:y2] = matrix[x1 - 1][y1 - 1: y2 - 1]
+        x1 -= 1
+        y1 -= 1
+        x2 -= 1
+        y2 -= 1
+        temp = dict()
+        m = 0
+        for x in range(x1, x2+1):
+            for y in range(y1, y2 + 1):
+                if x in [x1, x2] or y in [y1, y2]:
+                    temp[matrix[x][y]] = [x, y]
 
-        # 왼쪽
-        for i in range(x1, x2):
-            m = min(matrix[i][y1 - 1], m)
-            matrix[i - 1][y1 - 1] = matrix[i][y1 - 1]
+                    if x == x1 and y < y2:  # 오른쪽
+                        temp[matrix[x][y]] = [x, y+1]
+                    elif x == x2 and y > y1:  # 왼쪽
+                        temp[matrix[x][y]] = [x, y-1]
+                    elif x < x2 and y == y2:  # 아래
+                        temp[matrix[x][y]] = [x+1, y]
+                    elif x > x1 and y == y1:  # 위
+                        temp[matrix[x][y]] = [x-1, y]
 
-        # 아랫면
-        m = min(min(matrix[x2 - 1][y1:y2]), m)
-        matrix[x2 - 1][y1 - 1: y2 - 1] = matrix[x2 - 1][y1:y2]
-
-        # 오른쪽
-        for i in range(x2 - 2, x1 - 2, -1):
-            m = min(matrix[i][y2 - 1], m)
-            matrix[i + 1][y2 - 1] = matrix[i][y2 - 1]
-
-        matrix[x1][y2 - 1] = temp
-        m = min(m, temp)
-
+        print(temp, '\n')
+        m = min(temp.keys())  # 회전 부분의 최소값을 저장
         answer.append(m)
-
+        for k, v in temp.items():
+            matrix[v[0]][v[1]] = k
+        print(*matrix, sep='\n')
     return answer
+    # 각 변한 x,y의 인덱스를 matrix에 반영한다.
+
+    # temp = matrix[x1 - 1][y2 - 1]
+    # print(temp)
+    # # 윗면 [2, 2, 5, 4]
+    # m = min(min(matrix[x1 - 1][y1 - 1: y2 - 1]), m)
+    # matrix[x1 - 1][y1:y2] = matrix[x1 - 1][y1 - 1: y2 - 1]
+    # print(*matrix, sep='\n')
+    # # 왼쪽
+    # for i in range(x1, x2):  # 2-5
+    #     m = min(matrix[i][y1 - 1], m)
+    #     matrix[i - 1][y1 - 1] = matrix[i][y1 - 1]
+
+    # # 아랫면
+    # m = min(min(matrix[x2 - 1][y1:y2]), m)
+    # matrix[x2 - 1][y1 - 1: y2 - 1] = matrix[x2 - 1][y1:y2]
+
+    # # 오른쪽
+    # for i in range(x2 - 2, x1 - 2, -1):
+    #     m = min(matrix[i][y2 - 1], m)
+    #     matrix[i + 1][y2 - 1] = matrix[i][y2 - 1]
+
+    # matrix[x1][y2 - 1] = temp
+    # m = min(m, temp)
+
+    # answer.append(m)
 
 
-# def rotate(query, matrix):
-#     m = 0
-#     temp = dict()
-#     # [2, 2, 5, 4] -> [1, 1, 4, 3]
-#     x1, y1, x2, y2 = map(lambda x: x-1, query)
-#     print(f'query{list(query)}에 -1을 반영-->{x1, y1, x2, y2}')
-#     print()
-#     print('>>>회전 전 행렬')
-#     print(*matrix, sep='\n')
-#     print()
-#     for x in range(x1, x2+1):
-#         for y in range(y1, y2 + 1):
-#             if x in [x1, x2] or y in [y1, y2]:
-#                 temp[matrix[x][y]] = [x, y]
+def rotate(query, matrix):
+    m = 0
+    temp = dict()
+    # [2, 2, 5, 4] -> [1, 1, 4, 3]
+    x1, y1, x2, y2 = map(lambda x: x-1, query)
+    print(f'query{list(query)}에 -1을 반영-->{x1, y1, x2, y2}')
+    print()
+    print('>>>회전 전 행렬')
+    print(*matrix, sep='\n')
+    print()
+    for x in range(x1, x2+1):
+        for y in range(y1, y2 + 1):
+            if x in [x1, x2] or y in [y1, y2]:
+                temp[matrix[x][y]] = [x, y]
 
-#                 if x == x1 and y < y2:  # 오른쪽
-#                     temp[matrix[x][y]] = [x, y+1]
-#                 elif x == x2 and y > y1:  # 왼쪽
-#                     temp[matrix[x][y]] = [x, y-1]
-#                 elif x < x2 and y == y2:  # 아래
-#                     temp[matrix[x][y]] = [x+1, y]
-#                 elif x > x1 and y == y1:  # 위
-#                     temp[matrix[x][y]] = [x-1, y]
+                if x == x1 and y < y2:  # 오른쪽
+                    temp[matrix[x][y]] = [x, y+1]
+                elif x == x2 and y > y1:  # 왼쪽
+                    temp[matrix[x][y]] = [x, y-1]
+                elif x < x2 and y == y2:  # 아래
+                    temp[matrix[x][y]] = [x+1, y]
+                elif x > x1 and y == y1:  # 위
+                    temp[matrix[x][y]] = [x-1, y]
 
-#     print(temp, '\n')
-#     m = min(temp.keys())  # 회전 부분의 최소값을 저장
+    print(temp, '\n')
+    m = min(temp.keys())  # 회전 부분의 최소값을 저장
 
-#     # 각 변한 x,y의 인덱스를 matrix에 반영한다.
-#     for k, v in temp.items():
-#         matrix[v[0]][v[1]] = k
-#     print()
+    # 각 변한 x,y의 인덱스를 matrix에 반영한다.
+    for k, v in temp.items():
+        matrix[v[0]][v[1]] = k
+    print()
 
-#     return matrix, m
+    return matrix, m
 
 
 print(solution(r, c, query))

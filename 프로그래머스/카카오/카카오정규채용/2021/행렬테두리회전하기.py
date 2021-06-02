@@ -53,6 +53,7 @@ def solution(rows, columns, queries):
             matrix[v[0]][v[1]] = k
         print(*matrix, sep='\n')
     return answer
+
     # 각 변한 x,y의 인덱스를 matrix에 반영한다.
 
     # temp = matrix[x1 - 1][y2 - 1]

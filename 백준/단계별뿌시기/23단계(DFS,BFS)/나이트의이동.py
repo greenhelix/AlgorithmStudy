@@ -2,6 +2,8 @@ from collections import deque
 
 
 def bfs(sx, sy, fx, fy):
+    # 방향의종류는 총 8가지이다. 이것을 고려해서 X의 값을 2번 반복하여 나열하고
+    # y의 값을 맞춰 나열한다. --> 더 간단한 방법있으면 꼭 찾아 두자.
     vectorx = [-2, 2, -1, 1, -2, 2, -1, 1]
     vectory = [-1, 1, -2, 2, 1, -1, 2, -2]
     queue = deque()

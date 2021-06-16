@@ -75,10 +75,11 @@ def solution4(answers):
         if v == pattern[2][i % 10]:
             answer[2][1] += 1
     print(answer)
+    print(max(answer, key=lambda x: [x[1]]))
     return list(i[0] for i in sorted(answer, key=lambda x: [-x[1], x[0]]) if i[1] != 0)
 
 
-def solution(answers):
+def solution5(answers):
     answer = [[0, 1], [0, 2], [0, 3]]
     pattern = [[1, 2, 3, 4, 5], [2, 1, 2, 3, 2, 4, 2, 5],
                [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
@@ -104,9 +105,29 @@ def solution(answers):
     return sorted(result)
 
 
+def solution(answers):
+    answer = [[1, 0], [2, 0], [3, 0]]
+    pattern = [[1, 2, 3, 4, 5], [2, 1, 2, 3, 2, 4, 2, 5],
+               [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
+
+    for i, v in enumerate(answers):
+        if v == pattern[0][i % 5]:
+            answer[0][1] += 1
+        if v == pattern[1][i % 8]:
+            answer[1][1] += 1
+        if v == pattern[2][i % 10]:
+            answer[2][1] += 1
+
+    result = []
+    for i in range(3):
+        if max(answer, key=lambda x: [x[1]])[1] == answer[i][1]:
+            result.append(i+1)
+    return result
+
+
 test1 = [1, 2, 3, 4, 5]
 test2 = [1, 3, 2, 4, 2]
 test3 = [3, 3, 3, 4, 5, 1, 1, 1, 3, 4, 5]
 
-# print(solution3(test1))
-print(solution3(test3))
+# print(solution(test1))
+print(solution(test3))

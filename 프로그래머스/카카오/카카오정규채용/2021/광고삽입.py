@@ -44,6 +44,7 @@ def solution(play_time, adv_time, logs):
     adv_time_sec = makeSec(adv_time)
     print(f'총영상시간: {play_time_sec}초, 광고시간: {adv_time_sec}초')
     starts, ends = [], []
+    # 각 초별로 0으로 리스트를 만든다.
     total_time = [0 for i in range(play_time_sec + 1)]
 
     for play in logs:
@@ -52,17 +53,19 @@ def solution(play_time, adv_time, logs):
         starts.append(start)
         ends.append(end)
         print(f'시작: {start}초 -> 종료: {end}초')
+        # 시작되는 곳과 끝나는 초에 +-1을 각각 주어 중첩의 빈도를 측정한다.
         total_time[start] += 1
         total_time[end] -= 1
-
+    print('0번', total_time)
     # 각 영상로그들의 중첩 빈도를 나타낸다.
     # 영상의 초 단위마다 몇명이 보는지 알 수 있다.
     # 메모이제이션이 진행된다. ( 값을 기억하고 활용한다. )
     for i in range(1, len(total_time)):
         total_time[i] = total_time[i] + total_time[i - 1]
     print(len(total_time))
-    print('1번', total_time)
+    print('1번', total_time)  # 인원이 필요하다면 여기서 멈추고 사용하면 된다.
 
+    # 한번더 반복을 주어 누적 재생시간을 측정한다.
     # 시청자의 명수에 따라 누적 재생시간을 진행하여 볼 수 있다.
     for i in range(1, len(total_time)):
         total_time[i] = total_time[i] + total_time[i - 1]
@@ -70,7 +73,7 @@ def solution(play_time, adv_time, logs):
 
     most_view, max_time = 0, 0
 
-    # 광고초 범위에서 모든 영상 재생 범위로 i를 가 초별로 반복한다.
+    # 광고초 범위에서 모든 영상 재생 범위로 i를 각 초별로 반복한다.
     for i in range(adv_time_sec - 1, play_time_sec):
 
         # i가 광고의 전체시간보다 같거나 커진 경우

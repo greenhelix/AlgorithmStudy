@@ -1,6 +1,8 @@
 from collections import deque
 import time
 
+# 예제 테스트는 통과했으나 제출 시 시간초과 발생
+
 
 def solution1(s):
     start = time.time()
@@ -88,7 +90,6 @@ def solution2(s):
     return print(answer, '\n속도:', time.time() - start)
 
 
-# 예제 테스트는 통과했으나 제출 시 시간초과 발생
 test, test1, test2, test3, test4 = "[](){}", "}]()[{", "{{{{{{{", "({[]}){{}}", "}}]]))(([[{{"
 print(solution1(test3))
 print(solution2(test3))

@@ -26,58 +26,97 @@
 # 9
 # 7
 
+# 1차시도 실패
+# n = int(input())
+# global matrix
+# matrix = [list(map(int, input().split())) for _ in range(n)]
+# # print(*matrix, sep='\n')
+# blue, white = 0, 0
+# test = [[] for _ in range(4)]
+
+
+# def check(paper):
+#     temp = 0
+
+#     for i in range(len(paper)):
+#         temp += sum(paper[i])
+#         print('temp:', temp, i)
+#         if sum(paper[i]) != len(paper) and sum(paper[i]) > 0:
+#             return 'slice'
+
+#     if temp == 0:
+#         return 'white'
+#     elif temp == len(paper) ** 2:
+#         return 'blue'
+#     else:
+#         return 'slice'
+
+
+# def slice(paper):
+#     slice_paper = [[] for _ in range(4)]
+#     l = len(paper) // 2
+#     case = [(0, 0), (0, l), (l, 0), (l, l)]
+#     cnt = 4
+#     while cnt > 0:
+#         for i in range(len(l)):
+#             for j in range(len(l)):
+
+#                 # slice_paper[1] =
+#                 # slice_paper[2] =
+#                 # slice_paper[3] =
+
+#     return slice_paper
+
+
+# result = check(matrix)
+
+
+# if result == 'slice':
+#     print('slice do it!')
+
+# elif result == 'blue':
+#     blue = 1
+# elif result == 'white':
+#     white = 1
+# print('slice!!>>', slice(matrix))
+
+# # Final Print Section
+# print(f'white: {white}\nblue: {blue}')
+
+
+# 2차시도 - 쿼드트리 / 분할 정복
+def quad_tree(x, y, n):
+    global matrix, blue, white
+    color = matrix[y][x]
+    double_break = False
+
+    for i in range(x, x + n):
+        # 반복문 탈출 조건
+        if double_break:
+            break
+        for j in range(y, y + n):
+            if matrix[j][i] != color:
+                # 4분면으로 나눠서 확인하기
+                quad_tree(x, y, n // 2)
+                quad_tree(x + n // 2, y, n // 2)
+                quad_tree(x, y + n // 2, n // 2)
+                quad_tree(x + n // 2, y + n // 2, n // 2)
+                double_break = True
+                break
+
+    if not double_break:
+        if matrix[y][x] == 1:
+            blue += 1
+        else:
+            white += 1
+
+
 n = int(input())
-global matrix
-matrix = [list(map(int, input().split())) for _ in range(n)]
-# print(*matrix, sep='\n')
+matrix = []
 blue, white = 0, 0
-test = [[] for _ in range(4)]
 
+for _ in range(n):
+    matrix.append(list(map(int, input().split())))
 
-def check(paper):
-    temp = 0
-
-    for i in range(len(paper)):
-        temp += sum(paper[i])
-        print('temp:', temp, i)
-        if sum(paper[i]) != len(paper) and sum(paper[i]) > 0:
-            return 'slice'
-
-    if temp == 0:
-        return 'white'
-    elif temp == len(paper) ** 2:
-        return 'blue'
-    else:
-        return 'slice'
-
-
-def slice(paper):
-    slice_paper = [[] for _ in range(4)]
-    l = len(paper) // 2
-    case = [(0, 0), (0, l), (l, 0), (l, l)]
-    cnt = 4
-    while cnt > 0:
-        for i in range(len(l)):
-            for j in range(len(l)):
-
-                # slice_paper[1] =
-                # slice_paper[2] =
-                # slice_paper[3] =
-
-    return slice_paper
-
-
-result = check(matrix)
-
-
-if result == 'slice':
-    print('slice do it!')
-
-elif result == 'blue':
-    blue = 1
-elif result == 'white':
-    white = 1
-print('slice!!>>', slice(matrix))
-
-# Final Print Section
-print(f'white: {white}\nblue: {blue}')
+quad_tree(0, 0, n)
+print(f'{white}\n{blue}')

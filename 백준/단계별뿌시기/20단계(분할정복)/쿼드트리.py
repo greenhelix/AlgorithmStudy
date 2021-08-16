@@ -4,7 +4,7 @@
 # https://www.acmicpc.net/JudgeOnline/upload/201007/qq.png
 
 # 4등분하는 것이 기본 개념이다.
-#
+
 
 import sys
 input = sys.stdin.readline

@@ -4,6 +4,7 @@
 # 크기가 n인 수열  a가 있다.
 # 수열의 각 원소 a[i] 에 대해서 오큰수 NGE(i)를 구하려 한다.
 # a[i] 의 오큰수 = 오른쪽에 있으면서 a[i]보다 큰 수 중에서 가장 왼쪽에 있는 수를 의미한다.
+# i는 실제 이덱스의 +1을 해야한다.
 # 그러한 수가 없는 경우에는 a[i]의 오큰수 = -1 이다.
 
 # 예시)
@@ -50,15 +51,19 @@ n = int(input())
 a = list(map(int, input().split()))
 
 stack = []
-result = [-1 for _ in range(n)]
+result = [-1 for _ in range(n)]  # 비교가 안되는 경우를 예상하여 기본을 -1로 해둔다.
 
+# stack에는 index를 -1하여 0을넣어준다.
 stack.append(0)
 i = 1
 
 while stack and i < n:
     while stack and a[stack[-1]] < a[i]:
+        # 비교 값이 큰경우 result에 추가해주고,
+        # 기존 스택의 값은 빼준다.
         result[stack[-1]] = a[i]
         stack.pop()
+    # 검사가 끝나면 새로운 기존1의 i를 스택에 추가하고 i는 +1을 하여 다시 검사한다.
     stack.append(i)
     i += 1
 

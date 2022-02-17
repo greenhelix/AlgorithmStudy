@@ -1,7 +1,7 @@
 from statistics import median
 from typing import List
 
-
+# https://leetcode.com/problems/median-of-two-sorted-arrays/
 nums1 = [1,2]
 nums2 = [2,3]
 

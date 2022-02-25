@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/zigzag-conversion/
+# https://velog.io/@kgh732/Python-%EC%9C%BC%EB%A1%9C-%ED%91%B8%EB%8A%94-Leetcode6.-ZigZag-Conversion
 test = 'PAYPALISHIRING'
 row = 4
 

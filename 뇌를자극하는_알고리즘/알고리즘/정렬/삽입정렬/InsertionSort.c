@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+// 섞여있는 숫자카드를 순서대로 넣는 과정이라 보면 된다. 한장씩 집어서 위치를 찾아 넣어주는 느낌이다. 
+// 사람의 생각처럼 완전히 카드를 정렬하는 느낌은 아니다.
 void insertionSort(int dataSet[], int length)
 {
     int i, j, value = 0;
@@ -9,14 +11,17 @@ void insertionSort(int dataSet[], int length)
     {
         if(dataSet[i-1] <= dataSet[i]) continue; // 이 부분이 버블 정렬과 차이다. 비교자체를 안할 수 있음.
 
-        value = dataSet[i];
+        value = dataSet[i]; // 제일 우측(마지막) 값을 value에 저장한다. 카드를 손으로 집는 효과와 같다.
 
         for(j=0; j<i; j++)
         {
-            if(dataSet[j] > value)
+            if(dataSet[j] > value) // 이제 손에 집은 카드를 어디에 넣을지 계속 순회하면 찾는다.
             {
-                memmove(&dataSet[j+1], &dataSet[j], sizeof(dataSet[0]) * (i-j));
+                // 나머지 카드들의 뒤로 밀어내기 때문에 memmove를 통해 이동시킨다.
+                memmove(&dataSet[j+1], &dataSet[j], sizeof(dataSet[0]) * (i-j)); 
+                // 손에 잡은 카드를 해당 위치에 넣어준다.
                 dataSet[j] = value;
+                // 해당 카드의 정렬이 끝났으니, 다음 카드를 보기 위해 멈춘다.
                 break;
             }
         }
